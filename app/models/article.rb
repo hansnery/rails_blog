@@ -1,6 +1,7 @@
 class Article < ApplicationRecord
 
   has_many :comments, dependent: :destroy
+  # validates :title, presence: true, length: { minimum: 5 }
   has_many :taggings, dependent: :destroy
   has_many :tags, dependent: :destroy, through: :taggings
   has_attached_file :image

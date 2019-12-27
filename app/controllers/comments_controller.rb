@@ -7,9 +7,19 @@ class CommentsController < ApplicationController
 
     @comment.save
 
-    # flash.notice = "Article '#{@article.title}' created!"
+    flash.notice = "Comment posted!"
 
     redirect_to article_path(@comment.article)
+  end
+
+  def destroy
+    @article = Article.find(params[:article_id])
+    @comment = @article.comments.find(params[:id])
+    @comment.destroy
+
+    flash.notice = "Comment deleted!"
+
+    redirect_to article_path(@article)
   end
 
   def comment_params
